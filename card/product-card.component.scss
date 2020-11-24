@@ -1,0 +1,25 @@
+.product {
+    
+    .mat-card {
+        cursor: pointer;
+
+        &:focus {
+            outline: none;
+        }
+    }
+
+    .mat-card-content {
+        min-height: 48px;
+        color: #6D6D6D;
+        font-size: 16px;
+    }
+
+    .mat-card-footer {
+        display: flex;
+        flex-direction: row-reverse;
+
+        .mat-icon {
+            margin: 0 16px 8px 0;
+        }
+    }
+}

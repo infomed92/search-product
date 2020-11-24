@@ -1,0 +1,21 @@
+<div class="product">
+    <mat-card (click)="goToProductGammesList(product)">
+        <mat-card-header>
+            <div mat-card-avatar>
+                <mat-icon class="stepper-icon"
+                            svgIcon="pmt:extension">
+                </mat-icon>
+            </div>
+            <mat-card-title>
+                {{ product.productId }}
+            </mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            {{ product.description }}
+        </mat-card-content>
+        <mat-card-footer>
+            <mat-icon svgIcon="pmt:launch">
+            </mat-icon>
+        </mat-card-footer>
+    </mat-card>
+</div>
