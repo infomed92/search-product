@@ -1,0 +1,28 @@
+<div *ngIf="!!(phase$ | async)">
+    <pmt-filter (onChange)="textFilter$.next($event)">
+    </pmt-filter>
+
+    <div class="products">
+        <pmt-product-card *ngFor="let product of (products$ | async)"
+                [product]="product">
+        </pmt-product-card>
+    </div>
+
+    <mat-progress-spinner class="left"
+                          mode="indeterminate"
+                          diameter="54"
+                          *ngIf="loading$ | async"></mat-progress-spinner>
+
+    <button *ngIf="isSeeMoreAvailable$ | async"
+            mat-raised-button
+            matTooltip="Click here to see more products"
+            matTooltipPosition="below"
+            (click)="seeMore()">
+        see more
+    </button>
+</div>
+
+<div *ngIf="!(plant$ | async) || !(phase$ | async)"
+     class="empty-page">
+    <h2>Select a plant then a phase to view something.</h2>
+</div>
