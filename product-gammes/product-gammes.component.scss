@@ -1,0 +1,115 @@
+:host {
+  display: block;
+  padding: 20px;
+}
+
+.bottom {
+  margin-bottom: 20px;
+}
+
+.page-header {
+  margin-bottom: 20px;
+}
+
+.return-btn {
+  float: left;
+}
+
+.logo {
+  float: left;
+  margin-left: 2rem;
+  margin-top: 0.6rem;
+}
+
+.label {
+  font-size: 17px;
+  font-weight: 500;
+  margin-left: 1.5rem;
+  margin-top: 0.5rem;
+  display: inline-block;
+}
+
+table {
+  width: 100%;
+}
+
+.container-table {
+  width: 100%;
+  overflow: auto;
+}
+
+.fontsize12 {
+  font-size: 12px;
+}
+
+.padding0 {
+  padding: 0 0;
+}
+
+.trending-up {
+  color: rgb(76, 219, 28);
+  margin-right: 10px;
+}
+
+.trending-flat {
+  color: rgba(0, 0, 0, 0.87);
+  margin-right: 10px;
+}
+
+.trending-down {
+  color: rgb(228, 20, 20);
+  margin-right: 10px;
+}
+
+.add {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+}
+
+.return {
+  position: fixed;
+  bottom: 24px;
+}
+
+h2 {
+  font-size: 22px;
+  font-weight: 500;
+  color: #000000;
+}
+
+.matTabGroup {
+  width: 94%;
+}
+
+.marginleft11 {
+  margin-left: 11%;
+}
+
+.marginleft13 {
+  margin-left: 13%;
+}
+
+.margintop15 {
+  margin-top: 15px;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.allocation_unit {
+  font-weight: 500;
+  margin-left: 22rem;
+  display: inline-block;
+
+  .label_unit {
+    margin-right: 0.6rem;
+  }
+
+  .radio_unit {
+    margin-right: 0.8rem;
+  }
+}

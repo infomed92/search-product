@@ -1,0 +1,119 @@
+<ng-container *ngIf="!!(result$ | async)">
+
+    <!-- TREE GRID -->
+    <ejs-treegrid id='treegrid'
+                  #treegrid
+                  [dataSource]='DATA_TREE_GRID'
+                  childMapping='children'
+                  [treeColumnIndex]='0'
+                  [allowFiltering]='true'
+                  [allowPaging]='true'
+                  [allowResizing]='true'
+                  [pageSettings]='pageSettings'
+                  [filterSettings]='filterSettings'
+                  (headerCellInfo)='headerCellInfo($event)'
+                  (toolbarClick)='toolbarClick($event)'
+                  [toolbar]='toolbarOptions'
+                  (dataBound)='dataBound()'>
+            <e-columns>
+                <e-column field='productId' headerText='Product ID' textAlign='left' width=100></e-column>
+                <e-column field='label' headerText='Description' textAlign='Left' width=100></e-column>
+                <e-column field='typeFabrique' headerText='Product type' textAlign='Center' width=50></e-column>
+                <e-column field='coef' headerText='Coefficient' textAlign='Center' width=60></e-column>
+                <e-column field='percentFictive' headerText='% fictive' textAlign='Left' width=60></e-column>
+                <e-column field='allocations' headerText='Cost center' [allowFiltering]='false' textAlign='Left' width=60></e-column>
+                <e-column field='n2tajUoe1' headerText='N2 TAJ_UOE1' [allowFiltering]='false' textAlign='Left' width=60></e-column>
+                <e-column field='n2tajUoe2' headerText='N2 TAJ_UOE2' [allowFiltering]='false' textAlign='Left' width=60></e-column>
+                <e-column field='n1tajUoe1' headerText='N1 TAJ_UOE1' [allowFiltering]='false' textAlign='Left' width=60></e-column>
+                <e-column field='n1tajUoe2' headerText='N1 TAJ_UOE2' [allowFiltering]='false' textAlign='Left' width=60></e-column>
+            </e-columns>
+            <ng-template #rowTemplate let-DATA_TREE_GRID>
+                <tr>
+                    <td class="border">
+                        <div [matTooltip]="DATA_TREE_GRID.productId">
+                             {{ DATA_TREE_GRID.productId }}
+                        </div>
+                    </td>
+                    <td class="border">
+                        <div class="custom"
+                             [matTooltip]="DATA_TREE_GRID.label">
+                             {{ DATA_TREE_GRID.label }}
+                        </div>
+                    </td>
+                    <td class="border">
+                      <div class="custom"
+                           [matTooltip]="DATA_TREE_GRID.typeFabrique">
+                           {{ DATA_TREE_GRID.typeFabrique }}
+                      </div>
+                    </td>
+                    <td class="border">
+                      <div class="custom"
+                           [matTooltip]="DATA_TREE_GRID.coef">
+                           {{ DATA_TREE_GRID.coef }}
+                      </div>
+                    </td>
+                    <td class="border">
+                      <div class="custom"
+                           [matTooltip]="DATA_TREE_GRID.percentFictive">
+                           {{ DATA_TREE_GRID.percentFictive }}
+                      </div>
+                    </td>
+                    <td class="border">
+                        <mat-list>
+                            <mat-list-item class="fontsize14" *ngFor="let allocation of DATA_TREE_GRID.allocations; let i = index">
+                                <span [matTooltip]="allocation.costCenterLabel">{{ allocation.costCenterLabel }}</span>
+                            </mat-list-item>
+                        </mat-list>
+                    </td>
+                    <td class="border">
+                        <mat-list>
+                          <mat-list-item class="fontsize14" *ngFor="let allocation of DATA_TREE_GRID.allocations; let i = index">
+                              <span [matTooltip]="allocationUnit === 'HOURS' ? formatNumber(allocation.n2tajUoe1) : convertToMin(allocation.n2tajUoe1)">
+                                    {{ allocationUnit === 'HOURS' ? formatNumber(allocation.n2tajUoe1) : convertToMin(allocation.n2tajUoe1) }}
+                              </span>
+                          </mat-list-item>
+                        </mat-list>
+                    </td>
+                    <td  class="border">
+                        <mat-list>
+                          <mat-list-item class="fontsize14" *ngFor="let allocation of DATA_TREE_GRID.allocations; let i = index">
+                              <span [matTooltip]="allocationUnit === 'HOURS' ? formatNumber(allocation.n2tajUoe2) : convertToMin(allocation.n2tajUoe2)">
+                                  {{ allocationUnit === 'HOURS' ? formatNumber(allocation.n2tajUoe2) : convertToMin(allocation.n2tajUoe2) }}
+                              </span>
+                          </mat-list-item>
+                        </mat-list>
+                    </td>
+                    <td  class="border">
+                        <mat-list>
+                          <mat-list-item class="fontsize14" *ngFor="let allocation of DATA_TREE_GRID.allocations; let i = index">
+                              <span [matTooltip]="allocationUnit === 'HOURS' ? formatNumber(allocation.n1tajUoe1) : convertToMin(allocation.n1tajUoe1)">
+                                  {{ allocationUnit === 'HOURS' ? formatNumber(allocation.n1tajUoe1) : convertToMin(allocation.n1tajUoe1) }}
+                              </span>
+                          </mat-list-item>
+                        </mat-list>
+                    </td>
+                    <td class="border">
+                        <mat-list>
+                          <mat-list-item class="fontsize14" *ngFor="let allocation of DATA_TREE_GRID.allocations; let i = index">
+                              <span [matTooltip]="allocationUnit === 'HOURS' ? formatNumber(allocation.n1tajUoe2) : convertToMin(allocation.n1tajUoe2)">
+                                  {{ allocationUnit === 'HOURS' ? formatNumber(allocation.n1tajUoe2) : convertToMin(allocation.n1tajUoe2) }}
+                              </span>
+                          </mat-list-item>
+                        </mat-list>
+                    </td>
+                </tr>
+            </ng-template>
+    </ejs-treegrid>
+</ng-container>
+
+<p class="error-message">
+    <span *ngIf="error">
+        <strong>Error: </strong> {{error.title}}
+    <span>
+</p>
+  
+<!-- Indeterminating Spinner -->
+<mat-spinner class="top"
+             mode="indeterminate"
+             diameter="54"
+             *ngIf="loading$ | async"></mat-spinner>

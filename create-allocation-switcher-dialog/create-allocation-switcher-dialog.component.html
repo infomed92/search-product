@@ -1,0 +1,125 @@
+<h2 mat-dialog-title>
+    New allocation
+</h2>
+
+<mat-dialog-content>
+
+        <form class="form"
+              [formGroup]="createAllocationForm">
+
+            <!-- Template Value -->
+            <ng-container *ngIf="allocationUnitValue && allocationUnitValue === 'HOURS'">
+                <mat-form-field class="form-field width_45 marginright9">
+                    <input matInput
+                           name="value"
+                           type="number"
+                           placeholder="Value in hours *"
+                           formControlName="value"
+                           [value]="createAllocationForm.get('value').value"
+                          />
+                    <mat-hint align="start">
+                        <strong>Only positive numbers are allowed here !</strong>
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="form-field width_45">
+                    <input matInput
+                           name="valueMinutes"
+                           type="number"
+                           placeholder="Value in minutes"
+                           formControlName="valueMinutes"
+                           [value]="createAllocationForm.get('valueMinutes').value"
+                           readonly />
+                </mat-form-field>
+            </ng-container>
+            <ng-container *ngIf="allocationUnitValue && allocationUnitValue === 'MINUTES'">
+                <mat-form-field class="form-field width_45 marginright9">
+                    <input matInput
+                           name="valueMinutes"
+                           type="number"
+                           placeholder="Value in minutes *"
+                           formControlName="valueMinutes"
+                           [value]="createAllocationForm.get('valueMinutes').value" />
+                        <mat-hint align="start">
+                            <strong>Only positive numbers are allowed here !</strong>
+                        </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="form-field width_45" [hidden]="true">
+                    <input matInput
+                           name="value"
+                           type="number"
+                           placeholder="Value in hours"
+                           formControlName="value"
+                           [value]="createAllocationForm.get('value').value"
+                           readonly />
+                </mat-form-field>
+                <mat-form-field class="form-field width_45">
+                    <input matInput
+                           name="valuehours"
+                           type="number"
+                           placeholder="Value in hours"
+                           formControlName="valuehours"
+                           [value]="createAllocationForm.get('valuehours').value"
+                           readonly />
+                </mat-form-field>
+            </ng-container>
+
+            <!-- Template Start Validity Date -->
+            <mat-form-field class="form-field top20">
+                <input matInput
+                       [min]="minDate"
+                       [max]="maxDate"
+                       [matDatepicker]="picker"
+                       formControlName="startValidityDate"
+                       name="startValidityDate"
+                       placeholder="Start validity date *">
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+
+            <!-- Template comment -->
+            <mat-form-field class="form-field top15">
+                <input matInput
+                       name="comment"
+                       type="text"
+                       placeholder="Comment"
+                       formControlName="comment"
+                       #comment
+                       maxlength="200">
+                <mat-hint align="start">
+                    Optional value
+                </mat-hint>
+                <mat-hint align="end">
+                    {{ comment.value?.length }} / 200
+                </mat-hint>
+            </mat-form-field>
+            <p class="error-message">
+                <span *ngIf="error">
+                    <strong>Error:</strong> {{error.title}}
+                <span>
+            </p>
+
+       </form>
+        
+</mat-dialog-content>
+
+<mat-dialog-actions class="actions">
+    <button mat-button
+            mat-dialog-close>
+        Cancel
+    </button>
+    <button mat-raised-button
+            color="primary"
+            [disabled]="!createAllocationForm.valid || isLoading"
+            (click)="onValid()">
+        <mat-icon svgIcon="pmt:play_arrow"
+                  *ngIf="!isLoading; else loader">
+        </mat-icon>
+        Add
+    </button>
+</mat-dialog-actions>
+
+<ng-template #loader>
+    <mat-progress-spinner mode="indeterminate"
+                          diameter="18">
+    </mat-progress-spinner>
+</ng-template>

@@ -1,0 +1,21 @@
+<pmt-generic-dropdown class="dropdown"
+                      [name]="name"
+                      [data$]="costCenter$"
+                      [displayWith]="displayWith"
+                      [filter]="filter"
+                      [template]="tmpl"
+                      (onChange)="onChange.emit($event)">
+</pmt-generic-dropdown>
+
+<div class="loading"
+     *ngIf="loading$ | async">
+    <mat-progress-spinner mode="indeterminate"
+                          diameter="24">
+    </mat-progress-spinner>
+</div>
+
+<ng-template #tmpl let-costCenter>
+    <span>{{ costCenter.costcenterId }}</span>
+     - 
+    <span>{{ costCenter.name }}</span>
+</ng-template>

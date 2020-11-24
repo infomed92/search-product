@@ -1,0 +1,51 @@
+.actions {
+    justify-content: flex-end;
+}
+
+.mat-dialog-content {
+    min-height: 160px;
+}
+
+.form {
+    width: 100%;
+
+    &-field {
+        width: 100%;
+    }
+
+    .ng-invalid:not(form), .ng-valid[required], .ng-valid.required {
+        border-left: none;
+    }
+}
+
+.actions {
+    justify-content: flex-end;
+}
+
+.mat-progress-spinner {
+    display: inline-block;
+    margin: 3px;
+}
+
+.error-message {
+    min-height: 24px;
+    font-size: 13px;
+    color: red;
+    margin-top: 12px;
+}
+
+.top15 {
+    margin-top: 15px;
+}
+
+.top20 {
+    margin-top: 20px;
+}
+
+.width_45 {
+    width: 45%;
+}
+
+.marginright9 {
+    margin-right: 9%;
+}
