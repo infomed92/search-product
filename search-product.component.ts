@@ -85,19 +85,6 @@ export class SearchProductComponent implements OnInit, OnDestroy {
             exists(3)
         );
 
-        this.plant$
-            .subscribe(() => {
-                if (!!this.textFilterSavedSwitcherSrv.getValue() && !this.returnToSearchProductSwitcherSrv.getValue()) {
-                    this.textFilter$.next(null);
-                }
-            });
-        this.phase$
-            .subscribe(() => {
-                if (!!this.textFilterSavedSwitcherSrv.getValue() && !this.returnToSearchProductSwitcherSrv.getValue()) {
-                    this.textFilter$.next(null);
-                }
-            });
-
         this.result$ = source$
             .pipe(
                 takeUntil(this.destroyed$),
